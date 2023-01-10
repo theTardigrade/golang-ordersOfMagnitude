@@ -23,3 +23,9 @@ func main() {
 	}
 }
 ```
+
+Running the example code above should produce the following output:
+
+```
+The number 12345678912 has an order of magnitude in the tens of billions.
+```
