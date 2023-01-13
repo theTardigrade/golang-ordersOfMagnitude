@@ -1,7 +1,6 @@
 package ordersOfMagnitude
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -26,8 +25,6 @@ func init() {
 		nameValues[i-1] = nameValues[2] + " of " + currentNameValue
 		nameValues[i] = nameValues[3] + " of " + currentNameValue
 	}
-
-	fmt.Println(nameValues)
 }
 
 func Name(number int64) (value string, found bool) {
