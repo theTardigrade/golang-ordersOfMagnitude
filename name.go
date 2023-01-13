@@ -19,15 +19,18 @@ var (
 )
 
 func init() {
-	for i := int64(7); i <= 19; i += 3 {
-		nameValues[i] += "illions"
-	}
-
-	for i := int64(4); i <= 16; i += 3 {
+	for i := int64(4); i <= 19; i += 3 {
 		currentNameValue := nameValues[i]
 
-		nameValues[i+1] = nameValues[2] + " of " + currentNameValue
-		nameValues[i+2] = nameValues[3] + " of " + currentNameValue
+		if i >= 7 {
+			currentNameValue += "illions"
+			nameValues[i] = currentNameValue
+		}
+
+		if i <= 16 {
+			nameValues[i+1] = nameValues[2] + " of " + currentNameValue
+			nameValues[i+2] = nameValues[3] + " of " + currentNameValue
+		}
 	}
 }
 
