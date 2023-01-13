@@ -28,8 +28,9 @@ func init() {
 		}
 
 		if i <= 16 {
-			nameValues[i+1] = nameValues[2] + " of " + currentNameValue
-			nameValues[i+2] = nameValues[3] + " of " + currentNameValue
+			for j := int64(1); j <= 2; j++ {
+				nameValues[i+j] = nameValues[j+1] + " of " + currentNameValue
+			}
 		}
 	}
 }
