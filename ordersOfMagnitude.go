@@ -27,13 +27,13 @@ func Name(number int64) (value string, found bool) {
 	}
 
 	for i := int64(1); i <= 3; i++ {
-		if value, found = nameHelper(number, i, nameValues[i]); found {
+		if value, found = nameHelper(number, i); found {
 			return
 		}
 	}
 
 	for i := int64(6); i <= 18; i += 3 {
-		if value, found = nameHelper(number, i, nameValues[i]); found {
+		if value, found = nameHelper(number, i); found {
 			return
 		}
 	}
@@ -41,7 +41,7 @@ func Name(number int64) (value string, found bool) {
 	return
 }
 
-func nameHelper(number int64, upperBoundPowerOfTenExponent int64, baseName string) (value string, found bool) {
+func nameHelper(number int64, upperBoundPowerOfTenExponent int64) (value string, found bool) {
 	upperBound := int64(math.Pow(10, float64(upperBoundPowerOfTenExponent)))
 
 	if number >= upperBound {
@@ -49,11 +49,11 @@ func nameHelper(number int64, upperBoundPowerOfTenExponent int64, baseName strin
 	}
 
 	if upperBoundPowerOfTenExponent <= 3 || number < int64(math.Pow(10, float64(upperBoundPowerOfTenExponent-2))) {
-		value = baseName
+		value = nameValues[upperBoundPowerOfTenExponent]
 	} else if number < int64(math.Pow(10, float64(upperBoundPowerOfTenExponent-1))) {
-		value = nameValues[2] + " of " + baseName
+		value = nameValues[2] + " of " + nameValues[upperBoundPowerOfTenExponent]
 	} else {
-		value = nameValues[3] + " of " + baseName
+		value = nameValues[3] + " of " + nameValues[upperBoundPowerOfTenExponent]
 	}
 
 	found = true
