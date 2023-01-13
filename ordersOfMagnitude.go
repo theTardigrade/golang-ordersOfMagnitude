@@ -45,18 +45,16 @@ func nameHelper(number int64, upperBoundPowerOfTenExponent int64) (value string,
 	upperBound := int64(math.Pow(10, float64(upperBoundPowerOfTenExponent)))
 
 	if number >= upperBound {
-		return
-	}
+		if upperBoundPowerOfTenExponent <= 3 || number < int64(math.Pow(10, float64(upperBoundPowerOfTenExponent-2))) {
+			value = nameValues[upperBoundPowerOfTenExponent]
+		} else if number < int64(math.Pow(10, float64(upperBoundPowerOfTenExponent-1))) {
+			value = nameValues[2] + " of " + nameValues[upperBoundPowerOfTenExponent]
+		} else {
+			value = nameValues[3] + " of " + nameValues[upperBoundPowerOfTenExponent]
+		}
 
-	if upperBoundPowerOfTenExponent <= 3 || number < int64(math.Pow(10, float64(upperBoundPowerOfTenExponent-2))) {
-		value = nameValues[upperBoundPowerOfTenExponent]
-	} else if number < int64(math.Pow(10, float64(upperBoundPowerOfTenExponent-1))) {
-		value = nameValues[2] + " of " + nameValues[upperBoundPowerOfTenExponent]
-	} else {
-		value = nameValues[3] + " of " + nameValues[upperBoundPowerOfTenExponent]
+		found = true
 	}
-
-	found = true
 
 	return
 }
