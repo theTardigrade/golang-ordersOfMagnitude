@@ -26,7 +26,6 @@ func init() {
 	for i := int64(4); i <= 16; i += 3 {
 		currentNameValue := nameValues[i]
 
-		nameValues[i] = currentNameValue
 		nameValues[i+1] = nameValues[2] + " of " + currentNameValue
 		nameValues[i+2] = nameValues[3] + " of " + currentNameValue
 	}
