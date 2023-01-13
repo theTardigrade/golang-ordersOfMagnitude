@@ -9,21 +9,21 @@ var (
 		1:  "units",
 		2:  "tens",
 		3:  "hundreds",
-		6:  "thousands",
-		9:  "millions",
-		12: "billions",
-		15: "trillions",
-		18: "quadrillions",
+		4:  "thousands",
+		7:  "millions",
+		10: "billions",
+		13: "trillions",
+		16: "quadrillions",
 	}
 )
 
 func init() {
-	for i := int64(18); i > 3; i -= 3 {
+	for i := int64(4); i <= 16; i += 3 {
 		currentNameValue := nameValues[i]
 
-		nameValues[i-2] = currentNameValue
-		nameValues[i-1] = nameValues[2] + " of " + currentNameValue
-		nameValues[i] = nameValues[3] + " of " + currentNameValue
+		nameValues[i] = currentNameValue
+		nameValues[i+1] = nameValues[2] + " of " + currentNameValue
+		nameValues[i+2] = nameValues[3] + " of " + currentNameValue
 	}
 }
 
