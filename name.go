@@ -37,9 +37,7 @@ func Name(number int64) (value string, found bool) {
 	}
 
 	for i := int64(1); i <= 18; i++ {
-		upperBound := int64(math.Pow(10, float64(i)))
-
-		if number < upperBound {
+		if upperBound := int64(math.Pow(10, float64(i))); number < upperBound {
 			value, found = nameValues[i], true
 			return
 		}
