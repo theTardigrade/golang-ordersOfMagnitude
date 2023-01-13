@@ -14,6 +14,7 @@ var (
 		10: "billions",
 		13: "trillions",
 		16: "quadrillions",
+		19: "quintillions",
 	}
 )
 
@@ -27,7 +28,7 @@ func init() {
 	}
 }
 
-func Name(number int64) (value string, found bool) {
+func Name(number int64) string {
 	if number < 0 {
 		if number == math.MinInt64 {
 			number = math.MaxInt64
@@ -38,10 +39,9 @@ func Name(number int64) (value string, found bool) {
 
 	for i := int64(1); i <= 18; i++ {
 		if upperBound := int64(math.Pow(10, float64(i))); number < upperBound {
-			value, found = nameValues[i], true
-			return
+			return nameValues[i]
 		}
 	}
 
-	return
+	return nameValues[19]
 }
