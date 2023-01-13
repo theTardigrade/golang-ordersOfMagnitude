@@ -44,7 +44,7 @@ func Name(number int64) (value string, found bool) {
 func nameHelper(number int64, upperBoundPowerOfTenExponent int64) (value string, found bool) {
 	upperBound := int64(math.Pow(10, float64(upperBoundPowerOfTenExponent)))
 
-	if number >= upperBound {
+	if number < upperBound {
 		if upperBoundPowerOfTenExponent <= 3 || number < int64(math.Pow(10, float64(upperBoundPowerOfTenExponent-2))) {
 			value = nameValues[upperBoundPowerOfTenExponent]
 		} else if number < int64(math.Pow(10, float64(upperBoundPowerOfTenExponent-1))) {
