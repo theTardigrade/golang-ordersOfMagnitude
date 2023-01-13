@@ -10,15 +10,19 @@ var (
 		2:  "tens",
 		3:  "hundreds",
 		4:  "thousands",
-		7:  "millions",
-		10: "billions",
-		13: "trillions",
-		16: "quadrillions",
-		19: "quintillions",
+		7:  "m",
+		10: "b",
+		13: "t",
+		16: "quadr",
+		19: "quint",
 	}
 )
 
 func init() {
+	for i := int64(7); i <= 19; i += 3 {
+		nameValues[i] += "illions"
+	}
+
 	for i := int64(4); i <= 16; i += 3 {
 		currentNameValue := nameValues[i]
 
