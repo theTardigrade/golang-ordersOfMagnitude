@@ -12,7 +12,7 @@ var (
 		4:  "thousands",
 		7:  "m",
 		10: "b",
-		13: "t",
+		13: "tr",
 		16: "quadr",
 		19: "quint",
 	}
