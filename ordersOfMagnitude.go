@@ -4,6 +4,19 @@ import (
 	"math"
 )
 
+var (
+	nameValues = map[int64]string{
+		1:  "units",
+		2:  "tens",
+		3:  "hundreds",
+		6:  "thousands",
+		9:  "millions",
+		12: "billions",
+		15: "trillions",
+		18: "quadrillions",
+	}
+)
+
 func Name(number int64) (value string, found bool) {
 	if number < 0 {
 		if number == math.MinInt64 {
@@ -13,49 +26,37 @@ func Name(number int64) (value string, found bool) {
 		}
 	}
 
-	if number < 1e3 {
-		if number < 10 {
-			return "units", true
+	for i := int64(1); i <= 3; i++ {
+		if value, found = nameHelper(number, i, nameValues[i]); found {
+			return
 		}
+	}
 
-		if number < 100 {
-			return "tens", true
+	for i := int64(6); i <= 18; i += 3 {
+		if value, found = nameHelper(number, i, nameValues[i]); found {
+			return
 		}
-
-		return "hundreds", true
-	}
-
-	if number < 1e6 {
-		return nameHelper(number, 6, "thousands"), true
-	}
-
-	if number < 1e9 {
-		return nameHelper(number, 9, "millions"), true
-	}
-
-	if number < 1e12 {
-		return nameHelper(number, 12, "billions"), true
-	}
-
-	if number < 1e15 {
-		return nameHelper(number, 15, "trillions"), true
-	}
-
-	if number < 1e18 {
-		return nameHelper(number, 18, "quadrillions"), true
 	}
 
 	return
 }
 
-func nameHelper(number int64, upperBoundPowerOfTenExponent int64, baseName string) (value string) {
-	if number < int64(math.Pow(10, float64(upperBoundPowerOfTenExponent-2))) {
-		return baseName
+func nameHelper(number int64, upperBoundPowerOfTenExponent int64, baseName string) (value string, found bool) {
+	upperBound := int64(math.Pow(10, float64(upperBoundPowerOfTenExponent)))
+
+	if number >= upperBound {
+		return
 	}
 
-	if number < int64(math.Pow(10, float64(upperBoundPowerOfTenExponent-1))) {
-		return "tens of " + baseName
+	if upperBoundPowerOfTenExponent <= 3 || number < int64(math.Pow(10, float64(upperBoundPowerOfTenExponent-2))) {
+		value = baseName
+	} else if number < int64(math.Pow(10, float64(upperBoundPowerOfTenExponent-1))) {
+		value = nameValues[2] + " of " + baseName
+	} else {
+		value = nameValues[3] + " of " + baseName
 	}
 
-	return "hundreds of " + baseName
+	found = true
+
+	return
 }
