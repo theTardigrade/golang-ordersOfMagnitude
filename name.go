@@ -44,8 +44,8 @@ func Name(number int64) string {
 		}
 	}
 
-	for i := int64(1); i <= 18; i++ {
-		if upperBound := int64(math.Pow(10, float64(i))); number < upperBound {
+	for i, upperBound := int64(1), int64(1); i <= 18; i++ {
+		if upperBound *= 10; number < upperBound {
 			return nameValues[i]
 		}
 	}
