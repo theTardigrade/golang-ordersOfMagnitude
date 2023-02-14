@@ -1,5 +1,9 @@
 # golang-ordersOfMagnitude
 
+This package exposes a single function, ```Name```, which describes the order of magnitude of a number.
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/theTardigrade/golang-ordersOfMagnitude)](https://goreportcard.com/report/github.com/theTardigrade/golang-ordersOfMagnitude)
+
 ## Example
 
 ```golang
