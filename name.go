@@ -35,6 +35,9 @@ func init() {
 	}
 }
 
+// Name returns the base-10 order of magnitude of a given number
+// in a human-readable form (from "units" and "tens" all the way
+// up to "hundreds of quadrillions" and "quintillions").
 func Name(number int64) string {
 	if number < 0 {
 		if number == math.MinInt64 {
